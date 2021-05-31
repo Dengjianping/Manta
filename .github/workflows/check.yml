@@ -59,6 +59,9 @@ jobs:
       - name: Check Build
         run: |
           cargo check --all-features
+      - name: Clear cache
+        run: |
+          cargo clean
       - name: Run Tests
         run: |
           cargo test --all-features
