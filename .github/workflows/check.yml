@@ -29,9 +29,6 @@ jobs:
       # so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Run yamllint
-        uses: actionshub/yamllint@main
-
       - name: Set-Up
         run: sudo apt install -y
              cmake pkg-config libssl-dev
