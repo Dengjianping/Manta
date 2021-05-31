@@ -39,6 +39,13 @@ jobs:
              cmake pkg-config libssl-dev
              git build-essential clang
              libclang-dev curl
+             
+      - name: Expand disk space
+        run:
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
       - name: Install Rustup
         run: |
