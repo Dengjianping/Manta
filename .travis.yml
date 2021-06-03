@@ -1,0 +1,35 @@
+sudo: required
+dist: focal
+language: rust
+rust:
+  - nightly
+  - stable
+  
+cache:
+  cargo: true
+  apt: true
+
+matrix:
+  allow_failures:
+    - rust: nightly
+    
+script:
+  - echo "Check Formatting"
+  - cargo +nightly fmt --all -- --check
+  - echo "Check Clippy"
+  - cargo +nightly clippy
+  - echo "Check Build"
+  - cargo check --all-features
+  - echo "Run Tests"
+  - cargo test --all-features
+
+
+before_install:
+  - sudo apt update -qq
+  - sudo apt install -y cmake pkg-config libssl-dev git build-essential clang libclang-dev curl
+  - echo "Set-Up"
+  - rustup update stable
+  - rustup update nightly
+  - rustup target add wasm32-unknown-unknown --toolchain nightly
+  - rustup component add clippy
+  - rustup component add rustfmt
