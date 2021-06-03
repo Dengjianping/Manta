@@ -3,7 +3,6 @@ dist: focal
 language: rust
 rust:
   - nightly
-  - stable
   
 cache:
   cargo: true
@@ -19,9 +18,9 @@ script:
   - echo "Check Clippy"
   - cargo +nightly clippy
   - echo "Check Build"
-  - cargo check --all-features
+  - cargo +nightly check --all-features
   - echo "Run Tests"
-  - cargo test --all-features
+  - cargo +nightly test --all-features
 
 
 before_install:
