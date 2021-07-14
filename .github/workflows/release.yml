@@ -20,32 +20,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Set-Up
-      #   run: sudo apt install -y
-      #        cmake pkg-config libssl-dev
-      #        git build-essential clang
-      #        libclang-dev curl
+      - name: Set-Up
+        run: sudo apt install -y
+             cmake pkg-config libssl-dev
+             git build-essential clang
+             libclang-dev curl
 
-      # - name: Install Rustup
-      #   run: |
-      #     curl https://sh.rustup.rs -sSf | sh -s -- -y
-      #     source ~/.cargo/env
-      #     rustup update stable
-      #     rustup update nightly
-      #     rustup target add wasm32-unknown-unknown --toolchain nightly
-      #     rustup component add clippy
-      #     rustup component add rustfmt
-
-      # - name: Calamari Build
-      #   run: |
-      #     cargo check --features calamari
+      - name: Install Rustup
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
+          source ~/.cargo/env
+          rustup update stable
+          rustup update nightly
+          rustup target add wasm32-unknown-unknown --toolchain nightly
+          rustup component add clippy
+          rustup component add rustfmt
 
       - name: Calamari Build
         run: |
-          mkdir -p target/release
-          mkdir -p target/release/wbuild/calamari-runtime
-          touch target/release/calamari-pc
-          touch target/release/wbuild/calamari-runtime/calamari_runtime.compact.wasm
+          cargo build --release --features calamari
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
