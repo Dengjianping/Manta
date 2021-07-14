@@ -36,9 +36,14 @@ jobs:
       #     rustup component add clippy
       #     rustup component add rustfmt
 
-      # - name: Check Manta-PC Build
+      # - name: Calamari Build
       #   run: |
       #     cargo check --features calamari
+
+      - name: Calamari Build
+        run: |
+          touch target/release/calamari-pc
+          touch target/release/wbuild/calamari-runtime/calamari_runtime.compact.wasm
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -48,5 +53,5 @@ jobs:
           title: "Development Build"
           files: |
             types.json
-            # target/release/calamari-pc
-            # target/release/wbuild/calamari-runtime/calamari_runtime.compact.wasm
+            target/release/calamari-pc
+            target/release/wbuild/calamari-runtime/calamari_runtime.compact.wasm
