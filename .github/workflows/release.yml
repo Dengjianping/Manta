@@ -42,6 +42,8 @@ jobs:
 
       - name: Calamari Build
         run: |
+          mkdir -p target/release
+          mkdir -p target/release/wbuild/calamari-runtime
           touch target/release/calamari-pc
           touch target/release/wbuild/calamari-runtime/calamari_runtime.compact.wasm
 
